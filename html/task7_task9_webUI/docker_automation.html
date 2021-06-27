@@ -1,0 +1,319 @@
+<html>
+	<head>
+		<title>
+			Docker Automation
+		</title>
+		<meta charset="utf-8">
+  		<meta name="viewport" content="width=device-width, initial-scale=1">
+  		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script src="js/my.js"></script>
+		<link rel="stylesheet" href="css/my.css" />
+	</head>
+<body>
+	<div class="modal fade" id="PI" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+		  <div class="modal-content">
+			<div class="modal-header">
+			  <h5 class="modal-title" id="exampleModalLabel">Pull Image From the Docker Hub</h5>
+			  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			  </button>
+			</div>
+			<div class="modal-body">
+					<div class="form-group">
+						<label>Docker Image</label>
+						<input type="text" class="form-control" name="iamge" placeholder="Enter Docker Image Name">
+					</div>
+					<div class="form-check">
+					  <input type="checkbox" class="form-check-input" id="exampleCheck1">
+					  <label class="form-check-label" for="exampleCheck1">Check me out</label>
+					</div>
+			</div>
+			<div class="modal-footer">
+			  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			  <input type="submit" class="btn btn-primary" value="Pull Image">
+			</div>
+		  </div>
+		</div>
+	  </div>
+		<div class="modal fade" id="IL" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+			  <div class="modal-content">
+				<div class="modal-header">
+				  <h5 class="modal-title" id="exampleModalLabel">Image List</h5>
+				  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				  </button>
+				</div>
+				<div class="modal-body">
+						<div class="form-check">
+						  <input type="checkbox" class="form-check-input" id="exampleCheck1">
+						  <label class="form-check-label" for="exampleCheck1">Check me out</label>
+						</div>
+				</div>
+				<div class="modal-footer">
+				  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				  <input type="submit" class="btn btn-primary" value="Check Docker Image List" onclick="DI_list_output()">
+				</div>
+			  </div>
+			</div>
+		  </div>	
+			<div class="modal fade" id="RCL" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal-dialog" role="document">
+				  <div class="modal-content">
+					<div class="modal-header">
+					  <h5 class="modal-title" id="exampleModalLabel">Running Container List</h5>
+					  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					  </button>
+					</div>
+					<div class="modal-body">
+							<div class="form-check">
+							  <input type="checkbox" class="form-check-input" id="exampleCheck1">
+							  <label class="form-check-label" for="exampleCheck1">Check me out</label>
+							</div>
+					</div>
+					<div class="modal-footer">
+					  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					  <input type="submit" class="btn btn-primary" value="Check Docker Running Container List" onclick="DCrunning_list_output()">
+					</div>
+				  </div>
+				</div>
+			  </div>
+	  <div class="modal fade" id="LC" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+		  <div class="modal-content">
+			<div class="modal-header">
+			  <h5 class="modal-title" id="exampleModalLabel">Launch Container</h5>
+			  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			  </button>
+			</div>
+			<div class="modal-body">		
+					<div class="form-group">
+						<label>Docker Container</label>
+						<input type="text" class="form-control"  placeholder="Enter Docker Container Name" name="container">
+					</div>
+					<div class="form-group">
+						<label>Docker Image</label>
+						<input type="text" class="form-control"  placeholder="Enter Docker Image Name" name="image">
+					</div>
+					<div class="form-check">
+					  <input type="checkbox" class="form-check-input" id="exampleCheck1">
+					  <label class="form-check-label" for="exampleCheck1">Check me out</label>
+					</div>
+			</div>
+			<div class="modal-footer">
+			  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			  <input type="submit" class="btn btn-primary" value="Launch Container">
+			</div>
+		  </div>
+		</div>
+	</div>
+	<form action="http://192.168.34.12/cgi-bin/DCexec.py" method="GET">
+	  <div class="modal fade" id="CE" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+		  <div class="modal-content">
+			<div class="modal-header">
+			  <h5 class="modal-title" id="exampleModalLabel">Run Command In docker Container</h5>
+			  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			  </button>
+			</div>
+			<div class="modal-body">
+				<form>
+					<div class="form-group">
+						<label>Docker Container</label>
+						<input type="text" name="container" class="form-control" placeholder="Enter Docker Container Name">
+					</div>
+					<div class="form-group">
+						<label>Command</label>
+						<input type="text"  name="command" class="form-control" placeholder="Enter Command">
+					</div>
+					<div class="form-check">
+					  <input type="checkbox" class="form-check-input" id="exampleCheck1">
+					  <label class="form-check-label" for="exampleCheck1">Check me out</label>
+					</div>
+			</div>
+			<div class="modal-footer">
+			  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			  <input type="submit" class="btn btn-primary" value="Run Command">
+			</div>
+		  </div>
+		</div>
+	  </div>
+	</form>
+    <form action="http://192.168.34.12/cgi-bin/DCstop.py" method="GET">
+		<div class="modal fade" id="StopC" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog" role="document">
+			<div class="modal-content">
+			  <div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Stop docker Container</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				  <span aria-hidden="true">&times;</span>
+				</button>
+			  </div>
+			  <div class="modal-body">
+				  <form>
+					  <div class="form-group">
+						  <label>Docker Container</label>
+						  <input type="text" name="container" class="form-control" placeholder="Enter Docker Container Name">
+					  </div>
+					  <div class="form-check">
+						<input type="checkbox" class="form-check-input" id="exampleCheck1">
+						<label class="form-check-label" for="exampleCheck1">Check me out</label>
+					  </div>
+			  </div>
+			  <div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				<input type="submit" class="btn btn-primary" value="Stop COntainer">
+			  </div>
+			</div>
+		  </div>
+		</div>
+	</form>
+	<form action="http://192.168.34.12/cgi-bin/DCstopped.py" method="GET">
+		<div class="modal fade" id="SCL" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+			  <div class="modal-content">
+				<div class="modal-header">
+				  <h5 class="modal-title" id="exampleModalLabel">List Of Stopped Conatiner</h5>
+				  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				  </button>
+				</div>
+				<div class="modal-body">
+						<div class="form-check">
+						  <input type="checkbox" class="form-check-input" id="exampleCheck1">
+						  <label class="form-check-label" for="exampleCheck1">Check me out</label>
+						</div>
+				</div>
+				<div class="modal-footer">
+				  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				  <input type="submit" class="btn btn-primary" value="Check Docker Stopped Container List">
+				</div>
+			  </div>
+			</div>
+		  </div>
+	</form>		
+	<form action="http://192.168.34.12/cgi-bin/DCremove.py" method="GET">
+		<div class="modal fade" id="RC" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog" role="document">
+			<div class="modal-content">
+			  <div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Remove docker Container</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				  <span aria-hidden="true">&times;</span>
+				</button>
+			  </div>
+			  <div class="modal-body">
+				  <form>
+					  <div class="form-group">
+						  <label>Docker Container</label>
+						  <input type="text" name="container" class="form-control" placeholder="Enter Docker Container Name">
+					  </div>
+					  <div class="form-check">
+						<input type="checkbox" class="form-check-input" id="exampleCheck1">
+						<label class="form-check-label" for="exampleCheck1">Check me out</label>
+					  </div>
+			  </div>
+			  <div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				<input type="submit" class="btn btn-primary" value="Remove Container">
+			  </div>
+			</div>
+		  </div>
+		</div>
+	</form>
+	<form action="http://192.168.43.236/cgi-bin/DIremove.py" method="GET">
+		<div class="modal fade" id="RI" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog" role="document">
+			<div class="modal-content">
+			  <div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Remove Docker Image</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				  <span aria-hidden="true">&times;</span>
+				</button>
+			  </div>
+			  <div class="modal-body">
+				  <form>
+					  <div class="form-group">
+						  <label>Docker Image</label>
+						  <input type="text" name="image" class="form-control" placeholder="Enter Docker Image Name">
+					  </div>
+					  <div class="form-check">
+						<input type="checkbox" class="form-check-input" id="exampleCheck1">
+						<label class="form-check-label" for="exampleCheck1">Check me out</label>
+					  </div>
+			  </div>
+			  <div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				<input type="submit" class="btn btn-primary" value="Remove Image">
+			  </div>
+			</div>
+		  </div>
+		</div>
+	</form>
+    <form action="http://192.168.34.12/cgi-bin/DCstart.py" method="GET">
+		<div class="modal fade" id="StartC" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog" role="document">
+			<div class="modal-content">
+			  <div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Start docker Container</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				  <span aria-hidden="true">&times;</span>
+				</button>
+			  </div>
+			  <div class="modal-body">
+				  <form>
+					  <div class="form-group">
+						  <label>Docker Container</label>
+						  <input type="text" name="container" class="form-control" placeholder="Enter Docker Container Name">
+					  </div>
+					  <div class="form-check">
+						<input type="checkbox" class="form-check-input" id="exampleCheck1">
+						<label class="form-check-label" for="exampleCheck1">Check me out</label>
+					  </div>
+			  </div>
+			  <div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				<input type="submit" class="btn btn-primary" value="Start Container">
+				
+			  </div>
+			</div>
+		  </div>
+		</div>
+	</form>
+	<div class="header">
+	   <marquee direction="right" height="100" width="200" bgcolor="white"><img src="images/docker1.png"></marquee>
+	    <a class="logo">Docker Automation</a>
+	  <div class="header-right">
+		<a href="https://www.docker.com/">About Docker</a>
+		<a href="https://hub.docker.com/" >Go To Docker Hub</a>
+	  </div>
+	</div>
+     
+    <div id="body">
+    	<div class="container" id="child1">
+		<div class="list-group">
+		  <br>
+		  <br>
+		  <button class="list-group-item text-center" data-toggle="modal" data-target="#PI" ><h4>pull image from docker hub</h4></button>
+		  <button class="list-group-item text-center" data-toggle="modal" data-target="#IL"><h4>Docker Images List</h4></button>
+		  <button class="list-group-item text-center" data-toggle="modal" data-target="#LC"><h4>Launch a docker container</h4></button>
+		  <button class="list-group-item text-center" data-toggle="modal" data-target="#RCL"><h4>Running Container List</h4></button>
+		  <button class="list-group-item text-center" data-toggle="modal" data-target="#CE"><h4>Docker Container Exec</h4></button>
+		  <button class="list-group-item text-center" data-toggle="modal" data-target="#StopC"><h4>Stop Docker Container</h4></button>
+		  <button class="list-group-item text-center" data-toggle="modal" data-target="#SCL"><h4>Stopped Container List</h4></button>
+		  <button class="list-group-item text-center" data-toggle="modal" data-target="#RC" ><h4>Remove docker container</h4></button>
+		  <button class="list-group-item text-center" data-toggle="modal" data-target="#RI"><h4>Remove docker images</h4></button>
+		  <button class="list-group-item text-center" data-toggle="modal" data-target="#StartC"><h4>Start Docker Container</h4></button>
+		</div>
+	  </div>
+	  </div>
+	  <div id="child2">laveena</div>
+</body>
+</html>
