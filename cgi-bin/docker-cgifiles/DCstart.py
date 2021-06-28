@@ -4,12 +4,12 @@ print()
 import subprocess as sp
 import cgi
 form =   cgi.FieldStorage()
-osname = form.getvalue("container")
-cmd = "sudo docker start {}".format(osname)
+container = form.getvalue("start_container");
+cmd = "sudo docker start {}".format()
 output1 = sp.getstatusoutput(cmd)
 status1 = output1[0]
 out1 = output1[1]
 if status1 == 0:
-        print("OS name {} has been started".format(osname))
+        print("OS name {} has been started".format(container))
 else:
         print("Error occured during starting is {}".format(out1))

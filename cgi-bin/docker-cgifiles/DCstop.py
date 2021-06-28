@@ -4,12 +4,12 @@ print()
 import subprocess as sp
 import cgi
 form =   cgi.FieldStorage()
-osname = form.getvalue("container")
-cmd = "sudo docker stop {}".format(osname)
+container = form.getvalue("stop_container")
+cmd = "sudo docker stop {}".format(container)
 output1 = sp.getstatusoutput(cmd)
 status1 = output1[0]
 out1 = output1[1]
 if status1 == 0:
-        print("OS name {} has been stopped".format(osname))
+        print("OS name {} has been stopped".format(container))
 else:
         print("Error occured during stopping is {}".format(out1))

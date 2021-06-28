@@ -7,10 +7,10 @@ print("content-type: text/html")
 print()
 
 mydata = cgi.FieldStorage()
-myx = mydata.getvalue("container")
-myy = mydata.getvalue("image")
+container = mydata.getvalue("Launch_container")
+image = mydata.getvalue("Launch_container_image")
 
-cmd = "sudo docker run -dit --name {} {}".format(myx,myy)
+cmd = "sudo docker run -dit --name {} {}".format(container,image)
 
 output = subprocess.getoutput(cmd)
 print(output)

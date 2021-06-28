@@ -13,7 +13,7 @@
 		<link rel="stylesheet" href="css/my.css" />
 	</head>
 <body>
-	<div class="modal fade" id="PI" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<!--<div class="modal fade" id="PI" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 		  <div class="modal-content">
 			<div class="modal-header">
@@ -38,7 +38,7 @@
 			</div>
 		  </div>
 		</div>
-	  </div>
+	  </div>-->
 		<div class="modal fade" id="IL" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog" role="document">
 			  <div class="modal-content">
@@ -95,11 +95,11 @@
 			<div class="modal-body">		
 					<div class="form-group">
 						<label>Docker Container</label>
-						<input type="text" class="form-control"  placeholder="Enter Docker Container Name" name="container">
+						<input type="text" class="form-control"  placeholder="Enter Docker Container Name" name="Launch_container">
 					</div>
 					<div class="form-group">
 						<label>Docker Image</label>
-						<input type="text" class="form-control"  placeholder="Enter Docker Image Name" name="image">
+						<input type="text" class="form-control"  placeholder="Enter Docker Image Name" name="Launch_container_image">
 					</div>
 					<div class="form-check">
 					  <input type="checkbox" class="form-check-input" id="exampleCheck1">
@@ -108,12 +108,11 @@
 			</div>
 			<div class="modal-footer">
 			  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-			  <input type="submit" class="btn btn-primary" value="Launch Container">
+			  <input type="submit" class="btn btn-primary" value="Launch Container" onclick="Drun_output()">
 			</div>
 		  </div>
 		</div>
 	</div>
-	<form action="http://192.168.34.12/cgi-bin/DCexec.py" method="GET">
 	  <div class="modal fade" id="CE" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 		  <div class="modal-content">
@@ -124,14 +123,13 @@
 			  </button>
 			</div>
 			<div class="modal-body">
-				<form>
 					<div class="form-group">
 						<label>Docker Container</label>
-						<input type="text" name="container" class="form-control" placeholder="Enter Docker Container Name">
+						<input type="text" name="exec_container" class="form-control" placeholder="Enter Docker Container Name">
 					</div>
 					<div class="form-group">
 						<label>Command</label>
-						<input type="text"  name="command" class="form-control" placeholder="Enter Command">
+						<input type="text"  name="exec_command" class="form-control" placeholder="Enter Command">
 					</div>
 					<div class="form-check">
 					  <input type="checkbox" class="form-check-input" id="exampleCheck1">
@@ -140,14 +138,12 @@
 			</div>
 			<div class="modal-footer">
 			  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-			  <input type="submit" class="btn btn-primary" value="Run Command">
+			  <input type="submit" class="btn btn-primary" value="Run Command" onclick="DCexec_output()">
 			</div>
 		  </div>
 		</div>
 	  </div>
-	</form>
-    <form action="http://192.168.34.12/cgi-bin/DCstop.py" method="GET">
-		<div class="modal fade" id="StopC" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal fade" id="StopC" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		  <div class="modal-dialog" role="document">
 			<div class="modal-content">
 			  <div class="modal-header">
@@ -157,10 +153,9 @@
 				</button>
 			  </div>
 			  <div class="modal-body">
-				  <form>
 					  <div class="form-group">
 						  <label>Docker Container</label>
-						  <input type="text" name="container" class="form-control" placeholder="Enter Docker Container Name">
+						  <input type="text" name="stop_container" class="form-control" placeholder="Enter Docker Container Name" >
 					  </div>
 					  <div class="form-check">
 						<input type="checkbox" class="form-check-input" id="exampleCheck1">
@@ -169,14 +164,12 @@
 			  </div>
 			  <div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-				<input type="submit" class="btn btn-primary" value="Stop COntainer">
+				<input type="submit" class="btn btn-primary" value="Stop COntainer" onclick="DCstop_output()">
 			  </div>
 			</div>
 		  </div>
-		</div>
-	</form>
-	<form action="http://192.168.34.12/cgi-bin/DCstopped.py" method="GET">
-		<div class="modal fade" id="SCL" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	</div>
+	<div class="modal fade" id="SCL" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog" role="document">
 			  <div class="modal-content">
 				<div class="modal-header">
@@ -193,13 +186,11 @@
 				</div>
 				<div class="modal-footer">
 				  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-				  <input type="submit" class="btn btn-primary" value="Check Docker Stopped Container List">
+				  <input type="submit" class="btn btn-primary" value="Check Docker Stopped Container List" onclick="DCstopped_output()">
 				</div>
 			  </div>
 			</div>
-		  </div>
-	</form>		
-	<form action="http://192.168.34.12/cgi-bin/DCremove.py" method="GET">
+		  </div>	
 		<div class="modal fade" id="RC" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		  <div class="modal-dialog" role="document">
 			<div class="modal-content">
@@ -210,10 +201,9 @@
 				</button>
 			  </div>
 			  <div class="modal-body">
-				  <form>
 					  <div class="form-group">
 						  <label>Docker Container</label>
-						  <input type="text" name="container" class="form-control" placeholder="Enter Docker Container Name">
+						  <input type="text" name="remove_container" class="form-control" placeholder="Enter Docker Container Name">
 					  </div>
 					  <div class="form-check">
 						<input type="checkbox" class="form-check-input" id="exampleCheck1">
@@ -222,13 +212,11 @@
 			  </div>
 			  <div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-				<input type="submit" class="btn btn-primary" value="Remove Container">
+				<input type="submit" class="btn btn-primary" value="Remove Container" onclick="DCremove_output()">
 			  </div>
 			</div>
 		  </div>
 		</div>
-	</form>
-	<form action="http://192.168.43.236/cgi-bin/DIremove.py" method="GET">
 		<div class="modal fade" id="RI" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		  <div class="modal-dialog" role="document">
 			<div class="modal-content">
@@ -239,10 +227,9 @@
 				</button>
 			  </div>
 			  <div class="modal-body">
-				  <form>
 					  <div class="form-group">
 						  <label>Docker Image</label>
-						  <input type="text" name="image" class="form-control" placeholder="Enter Docker Image Name">
+						  <input type="text" name="remove_image" class="form-control" placeholder="Enter Docker Image Name">
 					  </div>
 					  <div class="form-check">
 						<input type="checkbox" class="form-check-input" id="exampleCheck1">
@@ -251,14 +238,12 @@
 			  </div>
 			  <div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-				<input type="submit" class="btn btn-primary" value="Remove Image">
+				<input type="submit" class="btn btn-primary" value="Remove Image" onclick="DIremove_output()">
 			  </div>
 			</div>
 		  </div>
 		</div>
-	</form>
-    <form action="http://192.168.34.12/cgi-bin/DCstart.py" method="GET">
-		<div class="modal fade" id="StartC" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    	<div class="modal fade" id="StartC" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		  <div class="modal-dialog" role="document">
 			<div class="modal-content">
 			  <div class="modal-header">
@@ -268,10 +253,9 @@
 				</button>
 			  </div>
 			  <div class="modal-body">
-				  <form>
 					  <div class="form-group">
 						  <label>Docker Container</label>
-						  <input type="text" name="container" class="form-control" placeholder="Enter Docker Container Name">
+						  <input type="text" name="start_container" class="form-control" placeholder="Enter Docker Container Name">
 					  </div>
 					  <div class="form-check">
 						<input type="checkbox" class="form-check-input" id="exampleCheck1">
@@ -280,13 +264,11 @@
 			  </div>
 			  <div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-				<input type="submit" class="btn btn-primary" value="Start Container">
-				
+				<input type="submit" class="btn btn-primary" value="Start Container" onclick="DCstart_output()">
 			  </div>
 			</div>
 		  </div>
 		</div>
-	</form>
 	<div class="header">
 	   <marquee direction="right" height="100" width="200" bgcolor="white"><img src="images/docker1.png"></marquee>
 	    <a class="logo">Docker Automation</a>
@@ -301,7 +283,7 @@
 		<div class="list-group">
 		  <br>
 		  <br>
-		  <button class="list-group-item text-center" data-toggle="modal" data-target="#PI" ><h4>pull image from docker hub</h4></button>
+		  <!--<button class="list-group-item text-center" data-toggle="modal" data-target="#PI" ><h4>pull image from docker hub</h4></button>-->
 		  <button class="list-group-item text-center" data-toggle="modal" data-target="#IL"><h4>Docker Images List</h4></button>
 		  <button class="list-group-item text-center" data-toggle="modal" data-target="#LC"><h4>Launch a docker container</h4></button>
 		  <button class="list-group-item text-center" data-toggle="modal" data-target="#RCL"><h4>Running Container List</h4></button>
