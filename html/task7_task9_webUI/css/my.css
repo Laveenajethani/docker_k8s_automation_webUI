@@ -6,7 +6,7 @@ body
   margin: 0;
 }
 .header {
-  background-color: rgb(8, 8, 90);
+  background-color: rgb(99, 190, 226);
   padding: 10px 10px;
   float: left;
   width: 100%;
@@ -78,14 +78,15 @@ body
   background-image: url("images/bg_image.jpg");
   background-repeat: no-repeat;
   height: 100%;
-  padding-left: 50px;
+  padding-left: 35px;
+  padding-right: 45px;
   background-size: cover;
 }
 
 #body #child1
 {
   float: left;
-  width: 50%;
+  width: 30%;
   height: 600;
 }
 
@@ -93,6 +94,11 @@ body
 {
   color: white;
   float: right;
-  width: 50%;
+  width: 100%;
+  padding-left: 20px;
+  margin-top: 50px;
   height: 600;
+  padding-top: 50px;
+  font-size: 25px;
 }
+

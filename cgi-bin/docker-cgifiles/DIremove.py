@@ -6,10 +6,5 @@ import cgi
 form =   cgi.FieldStorage()
 image = form.getvalue("remove_image")
 cmd = "sudo docker rmi -f {}".format(image)
-output1 = sp.getstatusoutput(cmd)
-status1 = output1[0]
-out1 = output1[1]
-if status1 == 0:
-        print("Image name {} has been removed".format(image))
-else:
-        print("Error occured during removing is {}".format(out1))
+status,output = sp.getstatusoutput(cmd)
+print(output)

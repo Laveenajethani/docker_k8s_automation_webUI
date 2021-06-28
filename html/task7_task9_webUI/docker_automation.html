@@ -264,13 +264,13 @@
 			  </div>
 			  <div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-				<input type="submit" class="btn btn-primary" value="Start Container" onclick="DCstart_output()">
+				<input type="submit" class="btn btn-primary" value="Start Container" onclick="DCstart_output();">
 			  </div>
 			</div>
 		  </div>
 		</div>
 	<div class="header">
-	   <marquee direction="right" height="100" width="200" bgcolor="white"><img src="images/docker1.png"></marquee>
+	   <marquee direction="left" height="100" width="200" bgcolor="white"><img src="images/docker1.png"></marquee>
 	    <a class="logo">Docker Automation</a>
 	  <div class="header-right">
 		<a href="https://www.docker.com/">About Docker</a>
@@ -278,7 +278,7 @@
 	  </div>
 	</div>
      
-    <div id="body">
+    <div id="body" class="b">
     	<div class="container" id="child1">
 		<div class="list-group">
 		  <br>
@@ -291,11 +291,13 @@
 		  <button class="list-group-item text-center" data-toggle="modal" data-target="#StopC"><h4>Stop Docker Container</h4></button>
 		  <button class="list-group-item text-center" data-toggle="modal" data-target="#SCL"><h4>Stopped Container List</h4></button>
 		  <button class="list-group-item text-center" data-toggle="modal" data-target="#RC" ><h4>Remove docker container</h4></button>
-		  <button class="list-group-item text-center" data-toggle="modal" data-target="#RI"><h4>Remove docker images</h4></button>
+		  <button class="list-group-item text-center" data-toggle="modal" data-target="#RI"><h4>Remove docker image</h4></button>
 		  <button class="list-group-item text-center" data-toggle="modal" data-target="#StartC"><h4>Start Docker Container</h4></button>
 		</div>
 	  </div>
+	  <pre><div id="child2" class="c2">
+		  <img src="images/docker_project.png" style="padding-left: 200px;">
+	  </div></pre>
 	  </div>
-	  <div id="child2">laveena</div>
 </body>
 </html>

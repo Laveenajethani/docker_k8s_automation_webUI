@@ -12,5 +12,9 @@ image = mydata.getvalue("Launch_container_image")
 
 cmd = "sudo docker run -dit --name {} {}".format(container,image)
 
-output = subprocess.getoutput(cmd)
-print(output)
+status , output = subprocess.getstatusoutput(cmd)
+if status == 0: 
+  print("container {} launched with ID :\n{} ".format(container,output))
+else:
+  print(output)
+
