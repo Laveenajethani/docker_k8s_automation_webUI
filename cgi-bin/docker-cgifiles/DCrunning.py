@@ -2,6 +2,7 @@
 import subprocess
 print("content-type: text/plain")
 print()
-status = subprocess.getoutput("sudo docker ps")
+cmd = "sudo docker ps"
+status = subprocess.getoutput(cmd)
 print(status)
-
+#print("final")

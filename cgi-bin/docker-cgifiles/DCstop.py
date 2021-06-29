@@ -6,5 +6,9 @@ import cgi
 form =   cgi.FieldStorage()
 container = form.getvalue("stop_container")
 cmd = "sudo docker stop {}".format(container)
-output = sp.getoutput(cmd)
-print(output)
+status , output = sp.getstatusoutput(cmd)
+if status==0:
+    print("{} has stopped".format(output))
+else:
+    print(output)
+#print("final")

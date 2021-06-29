@@ -41,6 +41,7 @@ function DCexec_output(){
     command = document.getElementsByName("exec_command")[0].value;
     url = "http://"+IP+"/"+filepath+filename+"?"+"exec_container="+container+"&"+
     "exec_command="+command; 
+    alert(url);
     xhr.open("GET",url,false);
     xhr.send();
     var output = xhr.responseText;
@@ -74,6 +75,7 @@ function DCremove_output(){
     var xhr = new XMLHttpRequest();
     container = document.getElementsByName("remove_container")[0].value;
     url = "http://"+IP+"/"+filepath+filename+"?"+"remove_container="+container; 
+    alert(url);
     xhr.open("GET",url,false);
     xhr.send();
     var output = xhr.responseText;

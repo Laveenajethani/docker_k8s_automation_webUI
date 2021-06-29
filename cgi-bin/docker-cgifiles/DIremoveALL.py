@@ -2,5 +2,7 @@
 import subprocess
 print("content-type: text/plain")
 print()
-output = subprocess.getoutput("sudo docker rmi -f $(sudo docker images)")
+cmd = "sudo docker rmi -f $(sudo docker images)"
+output = subprocess.getoutput(cmd)
 print(output)
+#print("final")

@@ -7,4 +7,8 @@ form =   cgi.FieldStorage()
 container = form.getvalue("start_container")
 cmd = "sudo docker start {}".format(container)
 status,output = sp.getstatusoutput(cmd)
-print(output)
+if status == 0:
+    print("{} container has started".format(output))
+else:
+    print(output)
+#print("final")
