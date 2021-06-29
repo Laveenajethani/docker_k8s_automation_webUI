@@ -6,5 +6,5 @@ import cgi
 form =   cgi.FieldStorage()
 image = form.getvalue("remove_image")
 cmd = "sudo docker rmi -f {}".format(image)
-status,output = sp.getstatusoutput(cmd)
+output = sp.getoutput(cmd)
 print(output)

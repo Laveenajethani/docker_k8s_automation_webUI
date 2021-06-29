@@ -1,4 +1,4 @@
-var IP = "192.168.18.190";
+var IP = "192.168.0.190";
 var filepath = "cgi-bin/docker-cgifiles/";
 
 function DI_list_output(){
@@ -94,7 +94,7 @@ function DIremove_output(){
 function DCstart_output(){
     var filename = "DCstart.py";
     var xhr = new XMLHttpRequest();
-    image = document.getElementsByName("start_container")[0].value;
+    container = document.getElementsByName("start_container")[0].value;
     url = "http://"+IP+"/"+filepath+filename+"?"+"start_container="+container; 
     alert(url);
     xhr.open("GET",url,false);
@@ -103,11 +103,27 @@ function DCstart_output(){
     document.getElementById("child2").innerHTML=output;
 }
 
+function DCremoveALL_output(){
+    var filename = "DCremoveALL.py";
+    var xhr = new XMLHttpRequest();
+    var url = "http://"+IP+"/"+filepath+filename;
+    alert(url);
+    xhr.open("GET",url,false);
+    xhr.send();
+    var output = xhr.responseText;
+    document.getElementById("child2").innerHTML=output;
+}
 
-
-
-
-
+function DIremoveALL_output(){
+    var filename = "DIremoveALL.py";
+    var xhr = new XMLHttpRequest();
+    var url = "http://"+IP+"/"+filepath+filename;
+    alert(url);
+    xhr.open("GET",url,false);
+    xhr.send();
+    var output = xhr.responseText;
+    document.getElementById("child2").innerHTML=output;
+}
 
 
 
