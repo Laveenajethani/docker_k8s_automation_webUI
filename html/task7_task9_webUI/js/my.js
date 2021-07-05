@@ -1,9 +1,9 @@
-var IP = "192.168.0.190";
+var IP = "192.168.99.101";
 var filepath = "cgi-bin/docker-cgifiles/";
 
 function DI_list_output(){
     var filename = "DIlist.py";
-    var url = "http://"+"192.168.18.190"+"/"+filepath+filename;
+    var url = "http://"+IP+"/"+filepath+filename;
     var xhr = new XMLHttpRequest();
     xhr.open("GET",url,false);
     xhr.send();
