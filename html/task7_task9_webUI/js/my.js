@@ -41,12 +41,10 @@ function DCexec_output(){
     command = document.getElementsByName("exec_command")[0].value;
     url = "http://"+IP+"/"+filepath+filename+"?"+"exec_container="+container+"&"+
     "exec_command="+command; 
-    alert(url);
     xhr.open("GET",url,false);
     xhr.send();
     var output = xhr.responseText;
     document.getElementById("child2").innerHTML=output;
-
 }
 
 function DCstop_output(){
@@ -75,7 +73,6 @@ function DCremove_output(){
     var xhr = new XMLHttpRequest();
     container = document.getElementsByName("remove_container")[0].value;
     url = "http://"+IP+"/"+filepath+filename+"?"+"remove_container="+container; 
-    alert(url);
     xhr.open("GET",url,false);
     xhr.send();
     var output = xhr.responseText;
@@ -98,7 +95,6 @@ function DCstart_output(){
     var xhr = new XMLHttpRequest();
     container = document.getElementsByName("start_container")[0].value;
     url = "http://"+IP+"/"+filepath+filename+"?"+"start_container="+container; 
-    alert(url);
     xhr.open("GET",url,false);
     xhr.send();
     var output = xhr.responseText;
@@ -109,7 +105,6 @@ function DCremoveALL_output(){
     var filename = "DCremoveALL.py";
     var xhr = new XMLHttpRequest();
     var url = "http://"+IP+"/"+filepath+filename;
-    alert(url);
     xhr.open("GET",url,false);
     xhr.send();
     var output = xhr.responseText;
@@ -120,7 +115,6 @@ function DIremoveALL_output(){
     var filename = "DIremoveALL.py";
     var xhr = new XMLHttpRequest();
     var url = "http://"+IP+"/"+filepath+filename;
-    alert(url);
     xhr.open("GET",url,false);
     xhr.send();
     var output = xhr.responseText;
